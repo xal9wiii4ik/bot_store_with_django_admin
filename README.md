@@ -10,6 +10,8 @@ All commands bot will send to your chat in telegram
 HOW INSTALL:
 1) write commands: 
     1. pip install -r requirements.txt,
-    2. python manage.py migrate,
-    3. python manage.py runserver
+    2. python manage.py migrate
 2) change .env
+3) write commands: 
+    1. python manage.py runserver,
+    2. python app.py
