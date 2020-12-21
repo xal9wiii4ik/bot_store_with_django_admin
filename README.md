@@ -14,4 +14,7 @@ HOW INSTALL:
     1. python manage.py migrate,
     2. python manage.py createsuperuser,
     4. python manage.py runserver,
-    5. python app.py
+    5. python app.py.
+
+
+P.S. Architacture on all bot projects i took from here: https://github.com/Latand/aiogram-bot-template    
