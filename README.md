@@ -8,10 +8,10 @@ and then bot automatically will delete user from black list or you can do this i
 All commands bot will send to your chat in telegram
 
 HOW INSTALL:
-1) write commands: 
-    1. pip install -r requirements.txt,
-    2. python manage.py migrate
+1) write command: pip install -r requirements.txt
 2) change .env
 3) write commands: 
-    1. python manage.py runserver,
-    2. python app.py
+    1. python manage.py migrate,
+    2. python manage.py createsuperuser,
+    4. python manage.py runserver,
+    5. python app.py
