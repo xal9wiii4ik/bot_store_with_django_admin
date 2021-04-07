@@ -4,7 +4,7 @@ from django.db import models
 
 
 def get_unique_image_url(product_name: str, image_name: str) -> os or str:
-    """Изменение имени фотографии"""
+    """Change the name of image"""
 
     image_extension = image_name.split('.')[-1]
     rename = product_name + '.' + image_extension
@@ -15,7 +15,7 @@ def get_unique_image_url(product_name: str, image_name: str) -> os or str:
 
 
 class Product(models.Model):
-    """Модель продукта"""
+    """Product model"""
 
     name = models.CharField(max_length=40, verbose_name='Имя продукта', unique=True)
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Цена продукта')

@@ -12,7 +12,7 @@ from back_end import settings
 
 
 class ProductViewSet(ModelViewSet):
-    """View Set для модели продукта"""
+    """View Set for Product"""
 
     queryset = Product.objects.all().annotate(
         price_with_discount=F('price')-F('discount')
@@ -22,7 +22,7 @@ class ProductViewSet(ModelViewSet):
 
 
 class MailingProduct(APIView):
-    """Рассылка продукта"""
+    """Spam product"""
 
     def get(self, request, id: int) -> Response:
         requests.post(url=settings.URL.replace('command', f'/mailing_product {id}'))

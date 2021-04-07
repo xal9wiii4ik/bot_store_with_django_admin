@@ -8,7 +8,7 @@ from apps.user_profile.models import UserProfile
 
 
 class ServicesSerializerTestCase(TestCase):
-    """Test case для бизнес логики сериализаторов"""
+    """Test case for services of serializer"""
 
     def setUp(self) -> None:
         self.user = UserProfile.objects.create(username='user', chat_id=123)
@@ -28,13 +28,13 @@ class ServicesSerializerTestCase(TestCase):
         )
 
     def test_verification_product_name_and_check_quantity_not_zero(self) -> None:
-        """Тест для проверка продукта на наличие и проверка колличество продукта котрого больше нуля"""
+        """test for validation product on exist and check quantity"""
 
         verification_product_name_and_check_quantity(self.product.name)
         self.assertTrue(True)
 
     def test_verification_product_name_and_check_quantity_zero(self) -> None:
-        """Тест для проверка продукта на наличие и проверка колличество продукта котрого больше нуля"""
+        """test for validation product on exist and check quantity(more the zero)"""
 
         try:
             verification_product_name_and_check_quantity(self.product_1.name)

@@ -8,7 +8,7 @@ from apps.user_profile.serializers import BlackListUsersModelSerializer, UsersQu
 
 
 class BlackListUsersModelSerializerTestCase(TestCase):
-    """Test case для сериалайзера модели черного списка"""
+    """Test case for BlackListUsersModelSerializer"""
 
     def test_ok(self):
         black_list_user = BlackListUsers.objects.create(
@@ -51,7 +51,7 @@ class BlackListUsersModelSerializerTestCase(TestCase):
 
 
 class UsersQueueModelSerializerTestCase(TestCase):
-    """Test case для сериалайзера модели очереди пользователей"""
+    """Test case for UsersQueueModelSerializer"""
 
     def test_ok(self):
         user_queue = UserQueue.objects.create(

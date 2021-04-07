@@ -25,7 +25,7 @@ async def add_user(message: types.Message):
 
 @dp.message_handler(commands=['mailing_products'])
 async def mailing_products(message: types.Message):
-    """Рассылка продуктов"""
+    """Mailing product"""
 
     if message.from_user.id == settings.ADMIN_ID:
         response = requests.get(url=settings.SERVER_HOST.replace('path', 'product'),
@@ -62,7 +62,7 @@ async def mailing_products(message: types.Message):
 
 @dp.callback_query_handler(buy_item.filter())
 async def buying_product(call: CallbackQuery, callback_data: dict, state: FSMContext):
-    """Покупка продукта"""
+    """Buy product"""
 
     await call.message.edit_reply_markup()
     product_id = callback_data.get("product_id")
@@ -75,7 +75,7 @@ async def buying_product(call: CallbackQuery, callback_data: dict, state: FSMCon
 
 @dp.message_handler(regexp=r"^(\d+)$", state=PaymentState.EnterQuantity)
 async def enter_quantity(message: types.Message, state: FSMContext):
-    """Ввод колличества продукта"""
+    """Enter quantity product"""
 
     quantity = int(message.text)
     await state.update_data(
@@ -98,14 +98,14 @@ async def enter_quantity(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=PaymentState.EnterQuantity)
 async def not_quantity(message: types.Message):
-    """Если пользовтель ввел не цифру"""
+    """check quantity"""
 
     await message.answer('Неверное значение, введите число!')
 
 
 @dp.callback_query_handler(text_contains='yes', state=PaymentState.Payment)
 async def approval(call: CallbackQuery, state: FSMContext):
-    """Процесс покупки"""
+    """Buying process"""
 
     await call.message.edit_reply_markup()
     await dp.bot.send_message(chat_id=settings.ADMIN_ID, text='Enter Payment')
@@ -138,7 +138,7 @@ async def approval(call: CallbackQuery, state: FSMContext):
 
 @dp.pre_checkout_query_handler(state=PaymentState.Payment)
 async def checkout(query: PreCheckoutQuery, state: FSMContext):
-    """После оплаты покупки"""
+    """After buy product"""
 
     await dp.bot.answer_pre_checkout_query(query.id, True)
     data = await state.get_data()
@@ -155,7 +155,7 @@ async def checkout(query: PreCheckoutQuery, state: FSMContext):
 
 @dp.message_handler(commands=['mailing_product'])
 async def mailing_products(message: types.Message):
-    """Рассылка конкретного продукта"""
+    """Mailing product"""
 
     if message.from_user.id == settings.ADMIN_ID:
         response = requests.get(

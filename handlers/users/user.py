@@ -9,7 +9,7 @@ from loader import dp
 
 @dp.message_handler()
 async def question_not_mailing(message: types.Message) -> None:
-    """Обработка сообщения по поводу пользователя в черном списке"""
+    """MEssage about user in black list"""
 
     text = ''
     if message.text.lower() == 'почему не приходят продукты?':

@@ -6,7 +6,7 @@ from apps.product.serializers import ProductModelSerializer
 
 
 class ProductModelSerializerTestCase(TestCase):
-    """Test case для сериалайзера модели продукта"""
+    """Test case for ProductModelSerializer"""
 
     def test_ok(self):
         product = Product.objects.create(

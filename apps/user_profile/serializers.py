@@ -4,7 +4,7 @@ from apps.user_profile.models import BlackListUsers, UserQueue, UserProfile
 
 
 class BlackListUsersModelSerializer(serializers.ModelSerializer):
-    """Model serializer для модели черного списка пользователей"""
+    """Model serializer for BlackList"""
 
     class Meta:
         model = BlackListUsers
@@ -15,7 +15,7 @@ class BlackListUsersModelSerializer(serializers.ModelSerializer):
 
 
 class UserProfileModelSerializer(serializers.ModelSerializer):
-    """Model serializer для модели черного списка пользователей"""
+    """Model serializer for UserProfile"""
 
     class Meta:
         model = UserProfile
@@ -24,7 +24,7 @@ class UserProfileModelSerializer(serializers.ModelSerializer):
 
 
 class UsersQueueModelSerializer(serializers.ModelSerializer):
-    """Model serializer для модели очереди пользователей"""
+    """Model serializer for UsersQueue"""
 
     class Meta:
         model = UserQueue

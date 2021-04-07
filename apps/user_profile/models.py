@@ -5,7 +5,7 @@ from django.db import models
 
 
 class UserProfile(AbstractUser):
-    """Кастомный пользователь"""
+    """UserProfile model"""
 
     chat_id = models.BigIntegerField(verbose_name='Айди чата пользователя', default=0, null=True)
     number_purchases = models.IntegerField(default=0, null=True, blank=True, verbose_name='Колличесвто покупок')
@@ -21,6 +21,8 @@ class UserProfile(AbstractUser):
 
 
 class BlackListUsers(models.Model):
+    """black list model"""
+
     chat_id = models.BigIntegerField(verbose_name='Айди чата пользователя')
     date_ban = models.DateField(auto_now_add=True, verbose_name='Дата бана')
     days_ban = models.IntegerField(verbose_name='Колличество дней бана', blank=True)
@@ -40,7 +42,7 @@ class BlackListUsers(models.Model):
 
 
 class UserQueue(models.Model):
-    """Очередь пользователей для добавления"""
+    """UserQueue model"""
 
     chat_id = models.BigIntegerField(verbose_name='Айди чата пользователя', default=0, null=True)
     username = models.CharField(max_length=150, unique=True)

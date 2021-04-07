@@ -4,7 +4,7 @@ from apps.product.models import Product
 
 
 def verification_product_name_and_check_quantity(product_name: str) -> str:
-    """Проверка продукта на наличие и проверка колличество продукта"""
+    """Validation product on exist and check quantity"""
 
     product = Product.objects.filter(name=product_name)
     if len(product) != 0:

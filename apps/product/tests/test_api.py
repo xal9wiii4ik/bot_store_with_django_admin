@@ -11,7 +11,7 @@ from apps.product.models import Product
 
 
 class ProductApiTestCase(APITestCase):
-    """Api test case для view продукта"""
+    """Api test case for view product"""
 
     def setUp(self) -> None:
         self.url = reverse('token')
@@ -59,7 +59,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_200_OK, second=response.status_code)
 
     def test_get_not_staff(self) -> None:
-        """Тест для получения списка продуктов не администратором"""
+        """get products (admin token)"""
 
         url = reverse('product-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token_1)
@@ -67,7 +67,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_403_FORBIDDEN, second=response.status_code)
 
     def test_create_staff(self) -> None:
-        """Тест для создания продукта администратором"""
+        """create products (admin token)"""
 
         self.assertEqual(first=2, second=Product.objects.all().count())
         url = reverse('product-list')
@@ -86,7 +86,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first=3, second=Product.objects.all().count())
 
     def test_create_not_staff(self) -> None:
-        """Тест для создания продукта не администратором"""
+        """create products (user token)"""
 
         self.assertEqual(first=2, second=Product.objects.all().count())
         url = reverse('product-list')
@@ -104,7 +104,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first=2, second=Product.objects.all().count())
 
     def test_update_staff(self) -> None:
-        """Тест для обновления продукта администратором"""
+        """update products (admin token)"""
 
         self.assertEqual(first='product', second=self.product.name)
         url = reverse('product-detail', args=(self.product.id,))
@@ -120,7 +120,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first='update product', second=self.product.name)
 
     def test_update_not_staff(self) -> None:
-        """Тест для обновления продукта не администратором"""
+        """update products (user token)"""
 
         self.assertEqual(first='product', second=self.product.name)
         url = reverse('product-detail', args=(self.product.id,))
@@ -136,7 +136,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first='product', second=self.product.name)
 
     def test_delete_staff(self) -> None:
-        """Тест для удаления продукта администратором"""
+        """delete products (admin token)"""
 
         self.assertEqual(first=2, second=Product.objects.all().count())
         url = reverse('product-detail', args=(self.product.id,))
@@ -146,7 +146,7 @@ class ProductApiTestCase(APITestCase):
         self.assertEqual(first=1, second=Product.objects.all().count())
 
     def test_delete_not_staff(self) -> None:
-        """Тест для удаления продукта не администратором"""
+        """delete products (user token)"""
 
         self.assertEqual(first=2, second=Product.objects.all().count())
         url = reverse('product-detail', args=(self.product.id,))

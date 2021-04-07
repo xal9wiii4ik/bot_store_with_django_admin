@@ -12,7 +12,7 @@ from apps.cart.models import PurchasesHistory
 
 
 class PurchasesHistoryApiTestCase(APITestCase):
-    """Api test case для view списка продуктов"""
+    """Api test case for view Purchases History"""
 
     def setUp(self) -> None:
         self.url = reverse('token')
@@ -61,7 +61,7 @@ class PurchasesHistoryApiTestCase(APITestCase):
         )
 
     def test_get_staff(self) -> None:
-        """Тест для получения списка покупок администратором"""
+        """Getting Purchases History (admin token)"""
 
         url = reverse('purchaseshistory-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token)
@@ -69,7 +69,7 @@ class PurchasesHistoryApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_200_OK, second=response.status_code)
 
     def test_get_not_staff(self) -> None:
-        """Тест для получения списка покупок не администратором"""
+        """Getting Purchases History (user token)"""
 
         url = reverse('purchaseshistory-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token_1)
@@ -77,7 +77,7 @@ class PurchasesHistoryApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_403_FORBIDDEN, second=response.status_code)
 
     def test_create_staff(self) -> None:
-        """Тест для добавления в список покупок администратором"""
+        """create(add) purchases history (admin token)"""
 
         self.assertEqual(first=2, second=PurchasesHistory.objects.all().count())
         url = reverse('purchaseshistory-list')

@@ -19,7 +19,7 @@ async def on_startup(dp):
 
 
 async def black_list(wait_for) -> None:
-    """Работа с черным списком"""
+    """Work with black list"""
 
     while True:
         await remove_user_from_black_list()

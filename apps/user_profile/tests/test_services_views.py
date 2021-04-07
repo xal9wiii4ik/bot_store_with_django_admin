@@ -14,7 +14,7 @@ from apps.user_profile.services_views import (
 
 
 class ServicesViewsTestCase(TestCase):
-    """Test case для бизнес логики views"""
+    """Test case for services views"""
 
     def setUp(self) -> None:
         self.user = UserProfile.objects.create(username='user2', chat_id=2222)
@@ -41,7 +41,7 @@ class ServicesViewsTestCase(TestCase):
         )
 
     def test_add_user_and_remove_from_user_queue(self) -> None:
-        """Тест для добавления пользователя и удаление его из очереди"""
+        """add user and remove him from queue"""
 
         self.assertEqual(2, UserProfile.objects.all().count())
         self.assertEqual(2, UserQueue.objects.all().count())
@@ -50,7 +50,7 @@ class ServicesViewsTestCase(TestCase):
         self.assertEqual(3, UserProfile.objects.all().count())
 
     def test_remove_user(self) -> None:
-        """Удаление пользователя без блокировки"""
+        """Remove user without block"""
 
         self.assertEqual(1, BlackListUsers.objects.all().count())
         self.assertEqual(2, UserProfile.objects.all().count())
@@ -60,7 +60,7 @@ class ServicesViewsTestCase(TestCase):
         self.assertEqual(0, BlackListUsers.objects.all().count())
 
     def test_remove_user_with_ban(self) -> None:
-        """Удаление пользователя с блокировкой"""
+        """Remove user with block"""
 
         self.assertEqual(1, BlackListUsers.objects.all().count())
         self.assertEqual(2, UserProfile.objects.all().count())
@@ -71,7 +71,7 @@ class ServicesViewsTestCase(TestCase):
         self.assertEqual(0, BlackListUsers.objects.all().count())
 
     def test_remove_user_from_queue(self) -> None:
-        """Удаление пользователя из очереди"""
+        """Delete user from queue"""
 
         self.assertEqual(1, BlackListUsers.objects.all().count())
         self.assertEqual(2, UserProfile.objects.all().count())

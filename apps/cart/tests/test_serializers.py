@@ -8,7 +8,7 @@ from apps.user_profile.models import UserProfile
 
 
 class PurchasesHistoryModelSerializerTestCase(TestCase):
-    """Test case для сериалайзера модели списка продуктов"""
+    """Test case for PurchasesHistoryModelSerializer"""
 
     def test_ok(self):
         user = UserProfile.objects.create(username='user')

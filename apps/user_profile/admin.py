@@ -9,11 +9,9 @@ from apps.user_profile.models import UserProfile, BlackListUsers, UserQueue
 
 
 class UserProfileAdmin(UserAdmin):
-    """Кастомная админка для пользователя"""
+    """Display user in admin panel"""
 
     def add_to_black_list(self, obj):
-        """Добавление в черный список"""
-
         return mark_safe(f'<a href="{reverse("middleware_black_list", args=(obj.chat_id,))}">add</a>')
 
     list_display = ('username', 'email', 'is_staff',
@@ -36,11 +34,9 @@ admin.site.register(UserProfile, UserProfileAdmin)
 
 @admin.register(BlackListUsers)
 class BlackListModel(admin.ModelAdmin):
-    """Админка для черного списка пользователей"""
+    """Display black list in admin panel"""
 
     def remove_from_black_list(self, obj):
-        """Удаление из черного списка"""
-
         return mark_safe(f'<a href="{reverse("middleware_remove_black_list", args=(obj.id,))}">remove</a>')
 
     list_display = ('id', 'chat_id', 'date_ban', 'days_ban',
@@ -49,11 +45,9 @@ class BlackListModel(admin.ModelAdmin):
 
 @admin.register(UserQueue)
 class UserQueueModel(admin.ModelAdmin):
-    """Админка для очереди пользователей"""
+    """Display user queue in admin panel"""
 
     def button_add_user(self, obj):
-        """Кнопки добавить пользователя"""
-
         return mark_safe(f'<a href="{reverse("add_user_from_queue", args=(obj.chat_id,))}">add</a>')
 
     list_display = ('id', 'chat_id', 'username', 'first_name', 'last_name', 'button_add_user')

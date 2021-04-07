@@ -4,7 +4,7 @@ from apps.user_profile.models import UserProfile
 
 
 def add_product_to_purchase_history_and_change_quantity(data: dict) -> None:
-    """Добавление продукта в историю покупок и изменение его колличества на складе"""
+    """Add product to history and change quantity"""
 
     product = Product.objects.get(name=data['product_name'])
     user_profile = UserProfile.objects.get(chat_id=data['chat_id'])

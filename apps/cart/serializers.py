@@ -5,7 +5,7 @@ from apps.cart.servicies_serializers import verification_product_name_and_check_
 
 
 class PurchasesHistoryModelSerializer(serializers.ModelSerializer):
-    """Model serializer для модели корзины покупок"""
+    """Model serializer for model purchases"""
 
     chat_id = serializers.IntegerField(read_only=True)
     product_name = serializers.CharField(max_length=40, read_only=True)
@@ -19,7 +19,7 @@ class PurchasesHistoryModelSerializer(serializers.ModelSerializer):
 
 
 class ProductPurchaseSerializer(serializers.Serializer):
-    """Serializer после отплаты продукта для добавления в список покупок"""
+    """Serializer ProductPurchase"""
 
     product_name = serializers.CharField(max_length=40, required=True)
     chat_id = serializers.IntegerField(required=True)

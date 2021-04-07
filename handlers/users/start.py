@@ -9,7 +9,7 @@ from loader import dp
 
 @dp.message_handler(CommandStart())
 async def bot_start(message: types.Message):
-    """Команда /start"""
+    """command /start"""
 
     data = {
         'chat_id': message.from_user.id,

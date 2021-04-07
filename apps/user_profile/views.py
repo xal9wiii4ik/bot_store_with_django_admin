@@ -22,14 +22,15 @@ from back_end import settings
 
 class UserProfileViewSet(mixins.ListModelMixin,
                          GenericViewSet):
-    """Получение списка пользователей"""
+    """view for user profile"""
+
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileModelSerializer
     permission_classes = (permissions.IsAdminUser,)
 
 
 class BlackListUsersViewSet(ModelViewSet):
-    """View Set для модели продукта"""
+    """View Set for BlackListUsers"""
 
     queryset = BlackListUsers.objects.all()
     serializer_class = BlackListUsersModelSerializer
@@ -46,7 +47,7 @@ class BlackListUsersViewSet(ModelViewSet):
 
 
 class MiddlewareRemoveBlackListUserView(APIView):
-    """Промежуточное ПО при добавлении в черный список с панели администратора"""
+    """view for MiddlewareRemoveBlackListUser"""
 
     def get(self, request, id):
         response = requests.delete(url=settings.SERVER_HOST.replace('path', f'black_list_users/{id}'),
@@ -56,7 +57,7 @@ class MiddlewareRemoveBlackListUserView(APIView):
 
 
 class MiddlewareBlackListUserView(APIView):
-    """Промежуточное ПО при добавлении в черный список с панели администратора"""
+    """view for MiddlewareBlackListUser"""
 
     def get(self, request, chat_id):
         response = requests.post(url=settings.SERVER_HOST.replace('path', 'black_list_users'),
@@ -72,7 +73,7 @@ class UsersQueueViewSet(mixins.CreateModelMixin,
                         mixins.DestroyModelMixin,
                         mixins.ListModelMixin,
                         GenericViewSet):
-    """View Set для модели очереди пользователей"""
+    """View Set for UsersQueue"""
 
     queryset = UserQueue.objects.all()
     serializer_class = UsersQueueModelSerializer
@@ -89,7 +90,7 @@ class UsersQueueViewSet(mixins.CreateModelMixin,
 
 
 class AddUserFromQueue(APIView):
-    """View для добавления пользователя(пользователей) и удаление его(их) из очереди"""
+    """View for AddUserFromQueue"""
 
     def get(self, request, chat_id: int) -> Response:
         add_user_and_remove_from_user_queue(chat_id=chat_id)
@@ -99,7 +100,7 @@ class AddUserFromQueue(APIView):
 
 
 class RemoveUserView(APIView):
-    """Удаление пользователя"""
+    """view for RemoveUser"""
 
     permission_classes = (permissions.IsAdminUser,)
 

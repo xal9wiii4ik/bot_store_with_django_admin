@@ -4,7 +4,7 @@ from apps.product.models import Product
 
 
 class ProductModelSerializer(serializers.ModelSerializer):
-    """Model Serializer для модели продуктов"""
+    """Model Serializer for Product"""
 
     price_with_discount = serializers.DecimalField(max_digits=7, decimal_places=2, read_only=True)
 

@@ -9,7 +9,7 @@ from apps.user_profile.models import (
 
 
 def change_ban_status(ban_status: bool, chat_id: int) -> None:
-    """Изменение статуса бана у пользователя"""
+    """Change status of ban"""
 
     if not ban_status:
         user = UserProfile.objects.get(
@@ -22,7 +22,7 @@ def change_ban_status(ban_status: bool, chat_id: int) -> None:
 
 
 def add_user_and_remove_from_user_queue(chat_id: int) -> None:
-    """Добавления пользователя и удаление его из очереди"""
+    """Add user and delete from queue"""
 
     user_in_queue = UserQueue.objects.get(chat_id=chat_id)
     UserProfile.objects.create(username=user_in_queue.username,
@@ -34,7 +34,7 @@ def add_user_and_remove_from_user_queue(chat_id: int) -> None:
 
 
 def remove_user(data: dict) -> None:
-    """Удаление пользователя"""
+    """Remove user"""
 
     user = UserProfile.objects.filter(chat_id=data['chat_id'])
     if len(user) != 0:
@@ -48,7 +48,7 @@ def remove_user(data: dict) -> None:
 
 
 def verification_user(chat_id: int) -> bool:
-    """Проверка нет ли пользователя в базе данных"""
+    """Verification user in database"""
 
     user = UserProfile.objects.filter(chat_id=chat_id)
     if len(user) == 1:

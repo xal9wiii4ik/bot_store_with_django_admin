@@ -13,7 +13,7 @@ from apps.user_profile.models import BlackListUsers
 
 
 class BlackListUsersApiTestCase(APITestCase):
-    """Api test case для view черного списка"""
+    """Api test case for view black list"""
 
     def setUp(self) -> None:
         self.url = reverse('token')
@@ -55,7 +55,7 @@ class BlackListUsersApiTestCase(APITestCase):
         )
 
     def test_get_staff(self) -> None:
-        """Тест для получения списка пользователей из черного списка администратором"""
+        """Get list (admin token)"""
 
         url = reverse('blacklistusers-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token)
@@ -63,7 +63,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_200_OK, second=response.status_code)
 
     def test_get_not_staff(self) -> None:
-        """Тест для получения списка пользователей из черного списка не администратором"""
+        """Get list (user token)"""
 
         url = reverse('blacklistusers-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token_1)
@@ -71,7 +71,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_403_FORBIDDEN, second=response.status_code)
 
     def test_create_staff(self) -> None:
-        """Тест для добавления пользователя в черного списка администратором"""
+        """add user to list (admin token)"""
 
         self.assertEqual(first=2, second=BlackListUsers.objects.all().count())
         url = reverse('blacklistusers-list')
@@ -91,7 +91,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=3, second=BlackListUsers.objects.all().count())
 
     def test_create_not_staff(self) -> None:
-        """Тест для добавления пользователя в черного списка не администратором"""
+        """add user to list (user token)"""
 
         self.assertEqual(first=2, second=BlackListUsers.objects.all().count())
         url = reverse('blacklistusers-list')
@@ -109,7 +109,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=2, second=BlackListUsers.objects.all().count())
 
     def test_update_staff(self) -> None:
-        """Тест для обновления пользователя из черного списка администратором"""
+        """update user in list (admin token)"""
 
         self.assertEqual(first=(datetime.now().date() + timedelta(days=5)).strftime('%Y-%m-%d'),
                          second=self.black_list_user.expiration_date.strftime('%Y-%m-%d'))
@@ -127,7 +127,7 @@ class BlackListUsersApiTestCase(APITestCase):
                          second=self.black_list_user.expiration_date.strftime('%Y-%m-%d'))
 
     def test_update_not_staff(self) -> None:
-        """Тест для обновления пользователя из черного списка не администратором"""
+        """update user in list (user token)"""
 
         url = reverse('blacklistusers-detail', args=(self.black_list_user.id,))
         data = {
@@ -140,7 +140,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_403_FORBIDDEN, second=response.status_code)
 
     def test_delete_staff(self) -> None:
-        """Тест для удаления пользователя из черного списка администратором"""
+        """delete user from list (admin token)"""
 
         self.assertEqual(first=2, second=BlackListUsers.objects.all().count())
         url = reverse('blacklistusers-detail', args=(self.black_list_user.id,))
@@ -150,7 +150,7 @@ class BlackListUsersApiTestCase(APITestCase):
         self.assertEqual(first=1, second=BlackListUsers.objects.all().count())
 
     def test_delete_not_staff(self) -> None:
-        """Тест для удаления пользователя из черного списка не администратором"""
+        """delete user from list (user token)"""
 
         self.assertEqual(first=2, second=BlackListUsers.objects.all().count())
         url = reverse('blacklistusers-detail', args=(self.black_list_user.id,))
@@ -161,7 +161,7 @@ class BlackListUsersApiTestCase(APITestCase):
 
 
 class UserQueueApiTestCase(APITestCase):
-    """Api test case для view очереди пользователей"""
+    """Api test case for view users queue"""
 
     def setUp(self) -> None:
         self.url = reverse('token')
@@ -200,7 +200,7 @@ class UserQueueApiTestCase(APITestCase):
         )
 
     def test_get_staff(self) -> None:
-        """Тест для получения очереди пользователей администратором"""
+        """Get queue (admin token)"""
 
         url = reverse('userqueue-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token)
@@ -208,7 +208,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_200_OK, second=response.status_code)
 
     def test_get_not_staff(self) -> None:
-        """Тест для получения очереди пользователей не администратором"""
+        """Get queue (user token)"""
 
         url = reverse('userqueue-list')
         self.client.credentials(HTTP_AUTHORIZATION=self.token_1)
@@ -216,7 +216,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_403_FORBIDDEN, second=response.status_code)
 
     def test_create_staff(self) -> None:
-        """Тест для добавления пользователя в очередь администратором"""
+        """add user to queue (admin token)"""
 
         self.assertEqual(first=2, second=UserQueue.objects.all().count())
         url = reverse('userqueue-list')
@@ -235,7 +235,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=3, second=UserQueue.objects.all().count())
 
     def test_create_not_staff(self) -> None:
-        """Тест для добавления пользователя в очередь не администратором"""
+        """add user to queue (user token)"""
 
         self.assertEqual(first=2, second=UserQueue.objects.all().count())
         url = reverse('userqueue-list')
@@ -253,7 +253,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=2, second=UserQueue.objects.all().count())
 
     def test_update_staff(self) -> None:
-        """Тест для обновления пользователя из черного списка администратором"""
+        """update user in queue (admin token)"""
 
         url = reverse('userqueue-detail', args=(self.user_queue.id,))
         data = {
@@ -266,7 +266,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=status.HTTP_405_METHOD_NOT_ALLOWED, second=response.status_code)
 
     def test_delete_staff(self) -> None:
-        """Тест для удаления пользователя из очереди администратором"""
+        """update user in queue (user token)"""
 
         self.assertEqual(first=2, second=UserQueue.objects.all().count())
         url = reverse('userqueue-detail', args=(self.user_queue.id,))
@@ -276,7 +276,7 @@ class UserQueueApiTestCase(APITestCase):
         self.assertEqual(first=1, second=UserQueue.objects.all().count())
 
     def test_delete_not_staff(self) -> None:
-        """Тест для удаления пользователя из очереди не администратором"""
+        """delete user from queue (user token)"""
 
         self.assertEqual(first=2, second=UserQueue.objects.all().count())
         url = reverse('userqueue-detail', args=(self.user_queue.id,))

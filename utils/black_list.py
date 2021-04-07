@@ -7,7 +7,7 @@ from back_end import settings
 
 
 async def remove_user_from_black_list() -> None:
-    """Удаление пользователя из черного списка"""
+    """Remove user from black list"""
 
     present_date = datetime.now().strftime('%Y-%m-%d')
     response = requests.get(url=settings.SERVER_HOST.replace('path', f'black_list_users'),

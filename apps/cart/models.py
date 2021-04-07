@@ -4,7 +4,7 @@ from back_end import settings
 
 
 class PurchasesHistory(models.Model):
-    """Модель истории покупок"""
+    """Purchases history model"""
 
     user = models.ForeignKey(to=settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,

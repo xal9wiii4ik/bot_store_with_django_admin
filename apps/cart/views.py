@@ -12,7 +12,7 @@ from apps.cart.services_views import add_product_to_purchase_history_and_change_
 
 class PurchasesHistoryViewSet(mixins.ListModelMixin,
                               GenericViewSet):
-    """View Set для просмотра истории покупок"""
+    """View Set for purchases history"""
 
     queryset = PurchasesHistory.objects.all().annotate(
         chat_id=F('user__chat_id'),
@@ -25,7 +25,7 @@ class PurchasesHistoryViewSet(mixins.ListModelMixin,
 
 
 class ProductPurchaseView(APIView):
-    """View после оплаты продукта для добавления в список покупок"""
+    """View product purchases"""
 
     permission_classes = (permissions.IsAdminUser,)
 

@@ -2,7 +2,7 @@ from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
 class PaymentState(StatesGroup):
-    """Класс состояния оплаты"""
+    """State of payment"""
 
     EnterQuantity = State()
     Payment = State()
