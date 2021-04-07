@@ -1,5 +1,5 @@
 # bot_store_with_django_admin
-Bot(online store) with admin panel on django and with custom celery using all the beauty of asyncio. 
+Bot(online store) with admin panel on django and with custom celery using all the beauty of asyncio and states. 
 
 When user press start he waiting when u add him from admin panel. 
 You can add product on django admin panel and send mailing with products or product to users from admin panel.
