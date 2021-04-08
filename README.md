@@ -14,9 +14,9 @@ All commands bot will send to your chat in telegram
 4) djangorestframework-simplejwt
 5) requests
 6) smtp
-7) MySQL
 
 # date the code was written: 21.12.2020
 
+# Database MySQL
 
 P.S. Architacture on all bot projects i took from here: https://github.com/Latand/aiogram-bot-template    
