@@ -14,6 +14,7 @@ All commands bot will send to your chat in telegram
 4) djangorestframework-simplejwt
 5) requests
 6) smtp
+7) PostgreSQL
 
 # date the code was written: 21.12.2020
 
